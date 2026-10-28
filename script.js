@@ -1,5 +1,5 @@
 /**
- * CONBRICKS — SOCIEDADE UNIPESSOAL, LIMITADA
+ * COBRIK — SOCIEDADE UNIPESSOAL, LIMITADA
  * Master Interactive Logic & Animations · Versão 3.0
  * Slideshow 4s · Submissão de Formulário sem Sair do Site · Responsivo
  */
@@ -77,6 +77,7 @@
     const SCROLL_THRESHOLD = 70;
 
     const onScroll = rafThrottle(() => {
+      if (header.classList.contains('menu-open')) return;
       const currentScroll = window.scrollY;
       if (currentScroll > SCROLL_THRESHOLD) {
         header.classList.add('header--scrolled');
@@ -261,48 +262,68 @@
   };
 
   /* ─────────────────────────────────────────────
-     7. FILTRO DE PROJECTOS & MODAL (LIGHTBOX)
+     7. FILTRO DE CAPACIDADES DE ENGENHARIA & MODAL (ESTILO METTA)
   ───────────────────────────────────────────── */
   const projectDatabase = {
-    'residencial-palmas': {
-      title: 'Edifício Residencial Polana',
-      category: 'RESIDENCIAL MULTIFAMILIAR',
-      location: 'Maputo · Moçambique',
+    'edificacao-raiz': {
+      title: 'Construção Civil & Edificação de Raiz',
+      category: 'HABITAÇÃO MULTIFAMILIAR & RESIDENCIAL',
+      location: 'Maputo & Território Nacional',
       image: 'images/project-building.jpg',
-      area: '4.800 m²',
-      status: 'Concluído · 2025',
-      scope: 'Empreitada Geral de Raiz & Betão Armado',
-      desc: 'Edifício residencial contemporâneo de 9 pisos na Polana. Fundações especiais sobre estacas de betão moldadas, cálculo estrutural anti-sísmico e fachada bioclimática em brise-soleil de tijolo cerâmico texturado.'
+      area: '500 m² a 15.000 m²',
+      status: 'Capacidade Operacional Activa',
+      scope: 'Fundações, Estrutura & Turnkey',
+      desc: 'Execução integral de edifícios multifamiliares, residências contemporâneas e condomínios fechados a partir de projectos de arquitectura e estabilidade. Domínio de fundações profundas e directas, superestruturas em betão armado segundo os Eurocódigos e regulamentos moçambicanos (REBAP), alvenarias nobres e coordenação global de especialidades.'
     },
-    'comercial-baia': {
-      title: 'Sede Corporativa Baía Offices',
-      category: 'EDIFÍCIO CORPORATIVO',
-      location: 'Maputo · Centro Empresarial',
+    'estruturas-corporativas': {
+      title: 'Edifícios Comerciais & Sedes Corporativas',
+      category: 'SEGMENTO CORPORATIVO & COMERCIAL',
+      location: 'Maputo · Centros Empresariais',
       image: 'images/project-commercial.jpg',
-      area: '3.200 m²',
-      status: 'Concluído · 2024',
-      scope: 'Projecto Chave na Mão (Turnkey)',
-      desc: 'Construção de sede corporativa de 5 pisos integrando espelhos de água na praça de acolhimento, fachadas em vidro duplo com corte térmico e alvenaria aparente em tijolo maciço de alta resistência.'
+      area: 'Pisos Múltiplos & Grandes Vãos',
+      status: 'Capacidade Operacional Activa',
+      scope: 'Estruturas Mistas, Acabamentos & Redes Técnicas',
+      desc: 'Construção e adaptação de edifícios de escritórios, sedes empresariais e centros de serviços com elevados padrões de eficiência energética. Execução de lajes fungiformes, controlo acústico, fachadas com corte térmico e coordenação rigorosa de instalações de AVAC, dados e protecção contra incêndio.'
     },
-    'infra-ponte': {
-      title: 'Viaduto Rodoviário & Obras de Arte',
+    'reabilitacao-retrofit': {
+      title: 'Reabilitação Estrutural & Retrofit',
+      category: 'REABILITAÇÃO & RESTAURO TÉCNICO',
+      location: 'Moçambique',
+      image: 'images/ACABAMENTO.jpg',
+      area: 'Intervenções à Medida',
+      status: 'Capacidade Operacional Activa',
+      scope: 'Reforço Estrutural, Diagnóstico & Patologias',
+      desc: 'Intervenção técnica em estruturas degradadas por corrosão de armaduras, fissuração ou recalques diferenciais. Aplicação de argamassas tixotrópicas de alta resistência, encamisamento de elementos em betão armado, perfis metálicos estruturais e compósitos de fibra de carbono para prolongamento da vida útil dos imóveis.'
+    },
+    'infraestruturas-pesadas': {
+      title: 'Infraestruturas Viárias & Obras de Arte',
       category: 'INFRAESTRUTURAS & OBRAS PÚBLICAS',
-      location: 'Província de Maputo',
+      location: 'Província de Maputo & Vias Principais',
       image: 'images/project-infra.jpg',
-      area: 'Extensão: 850 m',
-      status: 'Em Conclusão · 2025',
-      scope: 'Engenharia Pesada & Betão Pré-esforçado',
-      desc: 'Empreitada pública de infraestruturas viárias com fundações profundas em estacaria de betão armado, montagem de vigas pré-esforçadas de 32 metros e laje de tabuleiro em betão de alta resistência.'
+      area: 'Obras Viárias e Hidráulicas',
+      status: 'Capacidade Operacional Activa',
+      scope: 'Betão Estrutural, Contenções & Drenagem',
+      desc: 'Engenharia de infraestruturas pesadas com foco em muros de suporte de terras em betão armado e gabiões, passagens hidráulicas, valas de escoamento e pavimentações estruturadas. Logística de estaleiro com maquinaria própria e controlo laboratorial sistemático de inertes e solos.'
     },
-    'retrofit-urbano': {
-      title: 'Retrofit & Restauro Arquitectónico',
-      category: 'REABILITAÇÃO & RESTAURO',
-      location: 'Baixa de Maputo · Centro Histórico',
-      image: 'images/project-building.jpg',
-      area: '1.850 m²',
-      status: 'Fase de Acabamentos · 2026',
-      scope: 'Reforço Estrutural & Instalações Especiais',
-      desc: 'Intervenção meticulosa de restauro e consolidação de imóvel de interesse patrimonial, com picagem e injecção de caldas em alvenarias antigas e suporte em perfis metálicos para novas lajes.'
+    'fiscalizacao-auditoria': {
+      title: 'Fiscalização Técnica & Gestão de Empreitadas',
+      category: 'DIRECÇÃO TÉCNICA INDEPENDENTE',
+      location: 'Todo o País',
+      image: 'images/about-team.jpg',
+      area: 'Supervisão Integral de Obra',
+      status: 'Serviço Permanente',
+      scope: 'Auditoria de Rigor, Prazos & Normas HSE',
+      desc: 'Serviços de fiscalização e assessoria técnica ao dono da obra. Verificação sistemática de cadernos de encargos, ensaios laboratoriais de compressão de betão e tracção de aços, validação de autos de medição e implementação intransigente de procedimentos de Higiene e Segurança no Trabalho (HSE).'
+    },
+    'orcamentacao-planeamento': {
+      title: 'Orçamentação Analítica & Engenharia de Custos',
+      category: 'CONSULTORIA & PLANEAMENTO',
+      location: 'Sede Maputo',
+      image: 'images/gallery-structure.jpg',
+      area: 'Projectos Executivos & Concursos',
+      status: 'Serviço Permanente',
+      scope: 'Mapas de Quantidades & Cronogramas Gantt',
+      desc: 'Elaboração detalhada de mapas de quantidades de trabalho, análise de preços compostos e orçamentos executivos sem imprevistos. Optimização do fluxo de compras técnicas, gestão de risco contratual e garantia de transparência económica entre clientes, fornecedores e direcção de obra.'
     }
   };
 
@@ -486,7 +507,7 @@
   };
 
   /* ─────────────────────────────────────────────
-     11. FORMULÁRIO COM ENVIO DIRECTO SEM SAIR DO SITE (GERAL@CONBRICKS.CO.MZ)
+     11. FORMULÁRIO COM ENVIO DIRECTO SEM SAIR DO SITE (GERAL@COBRIK.CO.MZ)
   ───────────────────────────────────────────── */
   const initContactForm = () => {
     const form = $('#contact-form');
@@ -539,7 +560,7 @@
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
-      // Simulação de envio direto assíncrono para geral@conbricks.co.mz
+      // Simulação de envio direto assíncrono para geral@cobrik.co.mz
       setTimeout(() => {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
@@ -551,7 +572,7 @@
         // Apresenta confirmação elegante sem sair do site
         showAlert(
           `<strong>✓ Mensagem enviada com sucesso!</strong><br>` +
-          `A sua solicitação para a especialidade <em>"${service}"</em> ${locationNotice} foi registada e encaminhada directamente para a nossa direcção de engenharia em <strong>geral@conbricks.co.mz</strong>.<br>` +
+          `A sua solicitação para a especialidade <em>"${service}"</em> ${locationNotice} foi registada e encaminhada directamente para a nossa direcção de engenharia em <strong>geral@cobrik.co.mz</strong>.<br>` +
           `Entraremos em contacto através do número <strong>${phone}</strong>${email ? ' ou do email <strong>' + email + '</strong>' : ''} no prazo máximo de 24 horas úteis.`,
           'success'
         );
