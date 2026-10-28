@@ -1,5 +1,5 @@
 /* ═════════════════════════════════════════════════════════════════════
-   CONBRICKS — SOCIEDADE UNIPESSOAL, LIMITADA
+   COBRIK — SOCIEDADE UNIPESSOAL, LIMITADA
    Master Stylesheet · Versão 3.0
    Tipografia Montserrat (Bold & Light) + Instrument Serif + DM Mono
    Slideshow 4s · Hero Centralizado · Design 100% Responsivo
@@ -22,7 +22,7 @@
   --ink-muted: #79746b;
   --ink-faint: #aba59a;
 
-  /* Cor de Marca CONBRICKS (Tijolo Cerâmico Terracota) */
+  /* Cor de Marca COBRIK (Tijolo Cerâmico Terracota) */
   --brick: #9e4620;
   --brick-hover: #b85427;
   --brick-dark: #7a3213;
@@ -333,7 +333,7 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 92px;
   z-index: 100;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px);
@@ -342,7 +342,7 @@ button {
   transition: all 0.3s ease;
 }
 .header--scrolled {
-  height: 70px;
+  height: 76px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 .header--hidden {
@@ -358,29 +358,42 @@ button {
   justify-content: space-between;
 }
 
-/* Logo Oficial COBRICK-01 (Sem texto adicional) */
+/* ─── LOGÓTIPO DO CABEÇALHO (Escala de Destaque Estilo METTA) ─── */
 .brand {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  flex: 0 0 auto;
+  min-width: 220px;
 }
 .brand-logo {
-  height: 42px;
+  /* Escala maior e imponente semelhante ao METTA */
+  height: 64px;
   width: auto;
-  max-width: 170px;
+  max-width: 270px;
   object-fit: contain;
   display: block;
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-base), height var(--transition-base);
+}
+.header--scrolled .brand-logo {
+  height: 52px; /* Tamanho quando rolar a página */
 }
 .brand:hover .brand-logo {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 24px;
+  margin: 0 auto; /* Centraliza a navegação no computador */
 }
+
+/* Os botões de contacto mobile NUNCA devem aparecer no desktop */
+.nav-mobile-cta {
+  display: none !important;
+}
+
 .nav-link {
   font-family: var(--font-heading);
   font-size: 12.5px;
@@ -414,7 +427,10 @@ button {
 .header-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 14px;
+  flex: 0 0 auto;
+  min-width: 170px; /* Garante simetria perfeita com o logótipo */
 }
 .header-badge {
   display: flex;
@@ -1112,8 +1128,13 @@ button {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(20px, 3.5vw, 40px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.5vw, 28px);
+}
+@media (max-width: 1080px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .project-card {
   background: #ffffff;
@@ -1717,13 +1738,14 @@ button {
 }
 .footer-brand-wrap {
   display: inline-block;
-  background: #ffffff;
-  padding: 6px 14px;
-  border-radius: 6px;
+  background: transparent; /* Fundo branco removido conforme solicitado */
+  padding: 0;
+  border-radius: 0;
   margin-bottom: 14px;
 }
 .footer-logo {
-  height: 36px;
+  /* Tamanho do logotipo no rodapé */
+  height: 48px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -1758,6 +1780,13 @@ button {
 }
 .footer-links a:hover {
   color: #df7a4e;
+}
+.footer-motto {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 13.5px;
+  color: #df7a4e;
+  line-height: 1.5;
 }
 .footer-bottom {
   display: flex;
@@ -1953,35 +1982,32 @@ button {
   }
 
   html {
-    scroll-padding-top: 66px;
+    scroll-padding-top: 74px;
   }
 
   /* Header base no mobile */
   .header {
-    height: 66px;
+    height: 74px;
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     transition: background 0.25s ease, height 0.25s ease;
   }
 
-  /* Quando o menu mobile está aberto: ocupa toda a altura da tela, sem corte e com scroll suave */
+  /* Quando o menu mobile está aberto */
   .header.menu-open {
-    height: 100dvh !important;
-    height: 100vh !important;
+    height: 74px !important;
     background: #ffffff !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     z-index: 9999 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
   .header-inner {
-    height: 66px;
-    min-height: 66px;
+    height: 74px;
+    min-height: 74px;
     flex-shrink: 0;
     width: 100%;
     padding: 0 clamp(16px, 4vw, 24px);
@@ -1990,11 +2016,14 @@ button {
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
+    position: relative;
+    z-index: 10000;
   }
 
   .brand-logo {
-    height: 34px;
-    max-width: 130px;
+    /* Logo em destaque maior também no celular */
+    height: 48px;
+    max-width: 195px;
   }
 
   .header-badge,
@@ -2004,35 +2033,55 @@ button {
 
   .menu-toggle {
     display: flex;
-    z-index: 10;
+    z-index: 10001;
+    position: relative;
   }
 
-  /* No mobile fechado, nav oculto */
+  /* Gaveta do Menu Mobile: Desce fixa a partir do topo (74px) até ao fundo do ecrã */
   .nav {
-    display: none;
-  }
-
-  /* Quando aberto, nav preenche todo o espaço vertical com links limpos e acessíveis */
-  .header.menu-open .nav {
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: calc(100dvh - 74px);
+    height: calc(100vh - 74px);
+    background: #ffffff;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    width: 100%;
+    justify-content: flex-start;
+    padding: 16px 20px 48px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 16px 20px 40px;
-    gap: 0;
-    background: #ffffff;
+    z-index: 9999;
     box-sizing: border-box;
-    animation: menuFadeIn 0.25s ease-out;
+    border-top: 1px solid var(--sand-200);
+
+    /* Oculto por defeito no celular com transição suave */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
 
-  .header.menu-open .nav-link {
+  /* Quando o menu está aberto: Mostra todos os itens a começar por INÍCIO */
+  .header.menu-open .nav,
+  .nav.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .header.menu-open .nav-link,
+  .nav.open .nav-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 13px 12px;
+    padding: 14px 12px;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -2042,19 +2091,25 @@ button {
     transition: all var(--transition-fast);
   }
 
-  .header.menu-open .nav-link::after {
+  .header.menu-open .nav-link::after,
+  .nav.open .nav-link::after {
     display: none; /* Desativa sublinhado horizontal do desktop */
   }
 
   .header.menu-open .nav-link:hover,
-  .header.menu-open .nav-link.active {
+  .header.menu-open .nav-link.active,
+  .nav.open .nav-link:hover,
+  .nav.open .nav-link.active {
     color: var(--brick);
     background: var(--sand-50);
-    padding-left: 16px;
+    padding-left: 18px;
   }
 
-  .header.menu-open .nav-mobile-cta {
-    display: block;
+  .header.menu-open .nav-mobile-cta,
+  .nav.open .nav-mobile-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: 24px;
     padding-top: 8px;
     width: 100%;
@@ -2062,7 +2117,7 @@ button {
 
   /* Hero no Celular: Proporção e Escala de Letra Ajustada */
   .hero {
-    padding-top: 86px;
+    padding-top: 96px;
     padding-bottom: 24px;
     min-height: 90svh;
   }
@@ -2158,8 +2213,42 @@ button {
     box-sizing: border-box;
   }
   .tabs-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-bottom: 1px solid var(--sand-200);
+    padding-bottom: 10px;
+    overflow-x: visible;
     width: 100%;
     max-width: 100%;
+  }
+  .tab-btn {
+    width: 100%;
+    text-align: left;
+    font-size: 11.5px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--sand-200);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .tab-btn::after {
+    content: '→';
+    font-size: 13px;
+    opacity: 0.4;
+  }
+  .tab-btn.active {
+    background: var(--ink);
+    color: #ffffff;
+    border-color: var(--ink);
+  }
+  .tab-btn.active::after {
+    content: '✓';
+    opacity: 1;
+    color: var(--brick);
   }
   .fact-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2254,9 +2343,51 @@ button {
     box-sizing: border-box;
   }
 
+  /* ─── FOOTER NO CELULAR: 2 COLUNAS DE LINKS (ESTILO GEOCORE / PRINT 10) ─── */
+  .footer {
+    padding: 44px clamp(16px, 4vw, 24px) 24px;
+  }
   .footer-top {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 16px;
+    padding-bottom: 32px;
+  }
+  .footer-col-brand,
+  .footer-top > div:first-child {
+    grid-column: 1 / -1; /* Marca e bio em largura completa no topo */
+  }
+  .footer-col-nav,
+  .footer-top > div:nth-child(2) {
+    grid-column: 1; /* Coluna 1: Navegação (Links Rápidos) */
+  }
+  .footer-col-services,
+  .footer-top > div:nth-child(3) {
+    grid-column: 2; /* Coluna 2: Especialidades (Serviços) */
+  }
+  .footer-col-contact,
+  .footer-top > div:nth-child(4) {
+    grid-column: 1 / -1; /* Contacto e Sede em largura completa na base */
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-heading {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .footer-links {
+    gap: 8px;
+  }
+  .footer-links a {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+  .footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 18px;
   }
 
   .modal-specs-grid {
@@ -2315,6 +2446,189 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ─── 22. MODAL DE ESPECIFICAÇÕES TÉCNICAS (LIGHTBOX) ─── */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.project-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 13, 11, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.project-modal-dialog {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  max-width: 880px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--sand-200);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-modal.active .project-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--sand-200);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+.modal-close-btn:hover {
+  background: var(--brick);
+  color: #ffffff;
+  border-color: var(--brick);
+  transform: rotate(90deg);
+}
+.modal-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.modal-visual {
+  position: relative;
+  min-height: 320px;
+  background: var(--sand-100);
+}
+.modal-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.modal-badge-cat {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(20, 19, 17, 0.88);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.modal-info {
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modal-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.modal-loc {
+  color: var(--brick);
+  font-weight: 600;
+}
+.modal-status {
+  color: var(--ink-muted);
+}
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.modal-desc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+  font-weight: 300;
+  margin-bottom: 22px;
+}
+.modal-specs-table {
+  background: var(--sand-50);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-xs);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-spec-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+.modal-spec-key {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.modal-spec-val {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+.modal-actions {
+  margin-top: auto;
+}
+.modal-actions .btn {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .modal-content-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-visual {
+    min-height: 220px;
+    max-height: 260px;
+  }
+  .modal-info {
+    padding: 24px 20px;
   }
 }
 
