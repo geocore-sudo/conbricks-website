@@ -82,9 +82,10 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: 116px;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -333,7 +334,7 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 92px;
+  height: 116px;
   z-index: 100;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px);
@@ -342,7 +343,7 @@ button {
   transition: all 0.3s ease;
 }
 .header--scrolled {
-  height: 76px;
+  height: 86px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 .header--hidden {
@@ -358,25 +359,25 @@ button {
   justify-content: space-between;
 }
 
-/* ─── LOGÓTIPO DO CABEÇALHO (Escala de Destaque Estilo METTA) ─── */
+/* ─── LOGÓTIPO DO CABEÇALHO (Escala de Destaque 3X Estilo METTA) ─── */
 .brand {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   flex: 0 0 auto;
-  min-width: 220px;
+  min-width: 280px;
 }
 .brand-logo {
-  /* Escala maior e imponente semelhante ao METTA */
-  height: 64px;
+  /* Logo imponente de grande escala e visibilidade (3x) */
+  height: 98px;
   width: auto;
-  max-width: 270px;
+  max-width: 320px;
   object-fit: contain;
   display: block;
   transition: transform var(--transition-base), height var(--transition-base);
 }
 .header--scrolled .brand-logo {
-  height: 52px; /* Tamanho quando rolar a página */
+  height: 70px; /* Tamanho quando rolar a página */
 }
 .brand:hover .brand-logo {
   transform: scale(1.02);
@@ -505,7 +506,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 110px clamp(16px, 4vw, 48px) 36px;
+  padding: 136px clamp(16px, 4vw, 48px) 36px;
   background-color: var(--dark-bg);
   color: #ffffff;
   overflow: hidden;
@@ -1982,12 +1983,12 @@ button {
   }
 
   html {
-    scroll-padding-top: 74px;
+    scroll-padding-top: 98px;
   }
 
   /* Header base no mobile */
   .header {
-    height: 74px;
+    height: 98px;
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -1996,7 +1997,7 @@ button {
 
   /* Quando o menu mobile está aberto */
   .header.menu-open {
-    height: 74px !important;
+    height: 98px !important;
     background: #ffffff !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -2006,11 +2007,12 @@ button {
   }
 
   .header-inner {
-    height: 74px;
-    min-height: 74px;
+    height: 98px;
+    min-height: 98px;
     flex-shrink: 0;
     width: 100%;
-    padding: 0 clamp(16px, 4vw, 24px);
+    max-width: 100%;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2020,10 +2022,32 @@ button {
     z-index: 10000;
   }
 
+  /* Previne que o logo expanda além do espaço e empurre o botão menu (Corrige Print 13) */
+  .brand {
+    min-width: 0 !important;
+    flex: 0 1 auto;
+    max-width: calc(100% - 56px);
+    display: inline-flex;
+    align-items: center;
+  }
+
   .brand-logo {
-    /* Logo em destaque maior também no celular */
-    height: 48px;
-    max-width: 195px;
+    /* Logo de grande destaque visual (3x) no celular */
+    height: 82px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .header-actions {
+    min-width: 0 !important;
+    width: auto !important;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
   }
 
   .header-badge,
@@ -2033,20 +2057,24 @@ button {
 
   .menu-toggle {
     display: flex;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    margin-left: 8px;
     z-index: 10001;
     position: relative;
   }
 
-  /* Gaveta do Menu Mobile: Desce fixa a partir do topo (74px) até ao fundo do ecrã */
+  /* Gaveta do Menu Mobile: Desce fixa a partir do topo (98px) até ao fundo do ecrã */
   .nav {
     position: fixed;
-    top: 74px;
+    top: 98px;
     left: 0;
     right: 0;
     bottom: 0;
     width: 100vw;
-    height: calc(100dvh - 74px);
-    height: calc(100vh - 74px);
+    height: calc(100dvh - 98px);
+    height: calc(100vh - 98px);
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -2117,7 +2145,7 @@ button {
 
   /* Hero no Celular: Proporção e Escala de Letra Ajustada */
   .hero {
-    padding-top: 96px;
+    padding-top: 116px;
     padding-bottom: 24px;
     min-height: 90svh;
   }
@@ -2289,22 +2317,86 @@ button {
     word-break: break-word;
   }
 
+  /* ─── FILTROS DE SERVIÇOS & PORTFÓLIO EM 2 COLUNAS ORGANIZADAS (Corrige Prints 14, 15 e 16) ─── */
+  .service-tabs-nav,
+  .portfolio-filters {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    margin-bottom: 24px !important;
+    width: 100% !important;
+  }
+  /* O primeiro botão ("Todos os...") ocupa as 2 colunas como cabeçalho limpo */
+  .service-tabs-nav .service-filter-btn:first-child,
+  .portfolio-filters .portfolio-filter-btn:first-child,
+  .service-tabs-nav .service-filter-btn:last-child {
+    grid-column: span 2 !important;
+  }
+  .service-filter-btn,
+  .portfolio-filter-btn {
+    width: 100% !important;
+    min-height: 40px;
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+  }
+
   /* Grelhas de Serviços & Projectos no Celular */
   .services-grid {
     grid-template-columns: 1fr;
     gap: 14px;
     width: 100%;
   }
+  .service-card {
+    padding: 22px 18px;
+    min-height: auto;
+  }
+  .service-card h3 {
+    font-size: 17.5px;
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .service-deliverables li {
+    font-size: 11.5px;
+    padding: 4px 0;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
     width: 100%;
   }
   .project-card-image {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
+  }
+  .project-card-body {
+    padding: 18px 16px;
+  }
+  .project-card-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .project-card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .project-card-footer {
+    padding-top: 10px;
   }
 
-  /* Galeria no Celular: 2 colunas proporcionais */
+  /* Galeria no Celular: 2 colunas proporcionais com legendas organizadas (Corrige Print 17) */
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
@@ -2317,6 +2409,59 @@ button {
   .gallery-card.span-2 {
     grid-column: span 2;
     aspect-ratio: 16 / 9;
+  }
+
+  /* Legenda das fotos da galeria: organizada verticalmente para não colidir texto (Print 17) */
+  .gallery-card figcaption {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    gap: 2px !important;
+    padding: 8px 10px !important;
+    background: linear-gradient(180deg, transparent 0%, rgba(14, 13, 11, 0.7) 45%, rgba(14, 13, 11, 0.95) 100%) !important;
+    box-sizing: border-box !important;
+  }
+  .gallery-card figcaption span:first-child {
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.03em !important;
+    text-transform: uppercase !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    width: 100% !important;
+  }
+  .gallery-card figcaption span:last-child {
+    font-size: 7.5px !important;
+    color: #df7a4e !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    order: -1 !important; /* Põe o identificador no topo (ex: 02 / LAJES & PILARES) */
+    margin-bottom: 1px !important;
+    white-space: nowrap !important;
+  }
+  /* O cartão duplo mantém disposição horizontal ampla */
+  .gallery-card.span-2 figcaption {
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding: 10px 14px !important;
+  }
+  .gallery-card.span-2 figcaption span:first-child {
+    font-size: 9.5px !important;
+    -webkit-line-clamp: 1 !important;
+    flex: 1 1 auto !important;
+  }
+  .gallery-card.span-2 figcaption span:last-child {
+    order: 1 !important;
+    font-size: 8.5px !important;
+    flex: 0 0 auto !important;
   }
 
   .method-grid {
