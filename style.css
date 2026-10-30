@@ -1745,8 +1745,9 @@ button {
   margin-bottom: 14px;
 }
 .footer-logo {
-  /* Tamanho do logotipo no rodapé */
-  height: 48px;
+  /* Tamanho do logotipo no rodapé (ajustado para 1.5x do original: 72px) */
+  height: 72px;
+  max-width: 100%;
   width: auto;
   object-fit: contain;
   display: block;
